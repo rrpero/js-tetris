@@ -26,7 +26,16 @@ class Piece {
     this.shape.forEach((row, y) => {
       row.forEach((value, x) => {
         if (value > 0) {
-          this.ctx.fillRect(this.x + x, this.y + y, 1, 1);
+          this.ctx.fillStyle = "#000";
+          this.ctx.fillRect(this.x + x, this.y + y , 1, 1);
+          this.ctx.fillStyle = this.color;
+          let thickness=0.1
+          this.ctx.fillRect(this.x + x + (thickness/2), this.y + y + (thickness/2), 1-(thickness), 1-(thickness));
+
+ 
+          //ctx.fillStyle='#000';
+          //ctx.fillRect(xPos - (thickness), yPos - (thickness), width + (thickness * 2), height + (thickness * 2));
+
         }
       });
     });

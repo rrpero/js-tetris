@@ -20,13 +20,17 @@ class Board {
 
     // Scale so we don't need to give size on every draw.
     this.ctx.scale(BLOCK_SIZE, BLOCK_SIZE);
+
   }
 
   reset() {
     this.grid = this.getEmptyGrid();
+
+
     this.piece = new Piece(this.ctx);
     this.piece.setStartingPosition();
     this.getNewPiece();
+  
   }
 
   getNewPiece() {
@@ -43,6 +47,17 @@ class Board {
   draw() {
     this.piece.draw();
     this.drawBoard();
+    
+    for(let x = 0; x < 10; x++){         
+
+      this.ctx.lineWidth = 0.05;
+      this.ctx.strokeStyle = "#222";
+      this.ctx.moveTo(x,0);
+      // End point (180,47)
+      this.ctx.lineTo(x,20);
+      // Make the line visible
+      this.ctx.stroke();
+    }      
   }
 
   drop() {
@@ -125,12 +140,27 @@ class Board {
   }
 
   drawBoard() {
+
     this.grid.forEach((row, y) => {
       row.forEach((value, x) => {
         if (value > 0) {
           this.ctx.fillStyle = COLORS[value];
-          this.ctx.fillRect(x, y, 1, 1);
+          this.ctx.fillRect(x, y, 0.9, 0.9);
+
         }
+        //console.log(y);
+        /* 
+        if(y==0)
+        {
+          this.ctx.lineWidth = 0.05;
+          this.ctx.strokeStyle = "#222";
+          this.ctx.moveTo(x,0);
+          // End point (180,47)
+          this.ctx.lineTo(x,20);
+          // Make the line visible
+          this.ctx.stroke();
+        }
+        */
       });
     });
   }
